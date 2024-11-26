@@ -1,6 +1,6 @@
 import streamlit as st
 
 def main():
-    st.title("Titulo Streamlit")
+    st.title("h1 Titulo proyecto")
 
 main()

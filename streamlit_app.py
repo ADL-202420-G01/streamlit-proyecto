@@ -37,35 +37,3 @@ if uploaded_file is not None:
     st.image(image, caption="Imagen subida", use_container_width=True)
 else:
     st.write("Por favor, sube una imagen para mostrarla.")
-
-# Subir archivo CSV
-uploaded_file = st.file_uploader("Subir archivo CSV", type=["csv"])
-
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write("### Datos del archivo CSV:")
-    st.write(df.head())
-
-    # Realizar predicciones si hay datos cargados
-    if st.button('Hacer predicciones'):
-        try:
-            predictions = ctrl.predict(df)
-            
-            # Convertir las predicciones a una serie de Pandas
-            predictions_series = pd.Series(predictions, name='Predicción')
-            
-            # Mapear las predicciones numéricas a etiquetas de texto
-            pred_map = {1: 'Bajo', 2: 'Medio', 3: 'Alto'}
-            predictions_series = predictions_series.map(pred_map)
-            
-            # Agregar las predicciones al DataFrame original
-            df['Predicción'] = predictions_series
-            
-            st.subheader('Predicción')
-            st.write(df)
-
-            st.success("✅ Done!")
-
-            #st.markdown(result_df.to_html(escape=False), unsafe_allow_html=True)
-        except Exception as e:
-            st.error(f"Something happened: {e}", icon="🚨")

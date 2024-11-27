@@ -14,8 +14,8 @@ def main():
     # Texto introductorio
     st.markdown("""
     Bienvenido a la herramienta de localizacion de construcciones.
-""")
-    # Subir archivo CSV
+                """)
+    # Subir archivo 
     uploaded_file = st.file_uploader("Subir imagen", type=["jpg"])
 
 

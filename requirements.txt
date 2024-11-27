@@ -1,1 +1,17 @@
+contractions
+inflect
+keras
+keras-preprocessing
+keras-tuner
+matplotlib
+nltk
+numpy
+pandas
+plotly
+scikeras[tensorflow]
+scikit-learn==1.2.2
+seaborn
+sodapy
+scipy
+spacy
 streamlit

@@ -1,6 +1,9 @@
-import streamlit as st
+from App import view as view
 
+# Main function
 def main():
-    st.title("h1 Titulo proyecto")
+    view.main()
 
-main()
+# Main function call to run the program
+if __name__ == '__main__':
+    main()

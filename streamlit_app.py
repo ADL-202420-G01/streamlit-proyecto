@@ -12,9 +12,9 @@ st.set_page_config(
 
 # Crear la interfaz en Streamlit
 st.title("Localización de construcciones con imágenes satelitales")
-st.write("Sube una imagen satelital para identificar construcciones")
+st.write("Modelo que identifica de una imagen satelital construcciones")
 
-MODEL_PATH = "cnn_model.keras"
+MODEL_PATH = "unet_model.keras"
 model = logic.load_model(MODEL_PATH)
 
 if model is not None:

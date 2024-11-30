@@ -7,7 +7,7 @@ from PIL import Image
 from app import logic
 
 #cargar el modelo guardado
-model=tf.keras.models.load_model("cnn_model.keras")
+model=tf.keras.models.load_model("seg_model_weights.h5")
 
 st.set_page_config(
     layout="centered", page_title="ADL 202420 Grupo 1", page_icon="🛩️"

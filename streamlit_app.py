@@ -32,7 +32,7 @@ uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
 if uploaded_image is not None:
     # Mostrar la imagen cargada
     original_image = Image.open(uploaded_image)
-    st.image(original_image, caption="Imagen Original", use_column_width=True)
+    st.image(original_image, caption="Imagen Original", use_container_width=True)
 
     # Cambiar tamaño antes de preprocesar
     resized_image = original_image.resize((256, 256))

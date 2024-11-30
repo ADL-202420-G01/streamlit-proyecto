@@ -165,7 +165,7 @@ cython_debug/
 .DS_Store
 
 # archivos modelos de keras
-
+*.keras
 !seg_model_weights.best.weights.h5
 !cnn_model.keras
 

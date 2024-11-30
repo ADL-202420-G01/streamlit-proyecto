@@ -43,3 +43,4 @@ st.write("Procesamiento completo.")
 # Mostrar la versión de Python
 st.write(f"Versión de Python: {sys.version}")
 st.write(f"Versión de Streamlit: {st.__version__}. Versión de TensorFlow: {tf.__version__}. Versión de NumPy: {np.__version__}.")
+st.write(f"Autores: Edison Suarez, Nicolas Niño, Diego Noriega, Freddy Freddy Orjuela")

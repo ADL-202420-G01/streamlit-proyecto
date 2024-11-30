@@ -7,14 +7,14 @@ from PIL import Image
 from app import logic
 
 #cargar el modelo guardado
-model=tf.keras.models.load_model("data/seg_model_weights.h5")
+model=tf.keras.models.load_model("data/cnn_model.keras")
 
 st.set_page_config(
     layout="centered", page_title="ADL 202420 Grupo 1", page_icon="🛩️"
 )
 
 # Crear la interfaz en Streamlit
-st.title("Clasificación con CNN")
+st.title("Localización de construcciones con imágenes satelitales")
 st.write("Sube una imagen satelital para identificar construcciones")
 
 # Subir la imagen

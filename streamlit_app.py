@@ -19,7 +19,7 @@ model = logic.load_model(MODEL_PATH)
 
 if model is not None:
     st.write("Resumen del modelo:")
-    st.text(model.summary())
+    st.write(model.summary())
 
 # Subir la imagen
 uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])

@@ -8,11 +8,11 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import MultiHeadAttention
 from PIL import Image
 
-#Funcion para preprocesar la imagen
-def preprocess_image(image):
-    image = image.resize((128, 128))
-    image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=0)
+# Función para preprocesar la imagen con soporte para target_size
+def preprocess_image(image, target_size=(256, 256)):
+    image = image.resize(target_size)  # Cambiar tamaño según target_size
+    image = np.array(image) / 255.0  # Normalización (opcional)
+    image = np.expand_dims(image, axis=0)  # Añadir dimensión para lotes
     return image
 
 # Función para postprocesar la salida del modelo
@@ -21,7 +21,6 @@ def postprocess_output(output):
     output = np.squeeze(output)  # Eliminar dimensiones no necesarias
     output = (output * 255).astype(np.uint8)
     return Image.fromarray(output)
-
 
 # Swin Transformer block
 class SwinTransformerBlock(tf.keras.layers.Layer):

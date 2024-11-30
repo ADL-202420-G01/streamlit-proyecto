@@ -34,8 +34,11 @@ if uploaded_image is not None:
     original_image = Image.open(uploaded_image)
     st.image(original_image, caption="Imagen Original", use_column_width=True)
 
+    # Cambiar tamaño antes de preprocesar
+    resized_image = original_image.resize((256, 256))
+
     # Preprocesar la imagen
-    input_image = logic.preprocess_image(original_image, target_size=(128, 128))  # Ajusta según el modelo
+    input_image = logic.preprocess_image(resized_image)  # Sin target_size
 
     # Pasar la imagen por el modelo
     prediction = model.predict(input_image)
@@ -45,9 +48,6 @@ if uploaded_image is not None:
 
     # Mostrar la imagen procesada
     st.image(result_image, caption="Imagen Procesada", use_column_width=True)
-
-# Mostrar información adicional
-st.write("Procesamiento completo.")
 
 # Mostrar la versión de Python
 st.write(f"Versión de Python: {sys.version}")

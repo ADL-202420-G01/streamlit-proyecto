@@ -6,9 +6,6 @@ from PIL import Image
 
 from app import logic
 
-#cargar el modelo guardado
-model=tf.keras.models.load_model('swinUnet.keras')
-
 st.set_page_config(
     layout="centered", page_title="ADL 202420 Grupo 1", page_icon="🛩️"
 )
@@ -20,6 +17,13 @@ st.write("Sube una imagen satelital para identificar construcciones")
 # Subir la imagen
 uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
 
+MODEL_PATH = "cnn_model.keras"
+model = logic.load_model(MODEL_PATH)
+
+if model is not None:
+    st.write("Resumen del modelo:")
+    st.text(model.summary())
+    
 if uploaded_image is not None:
     # Mostrar la imagen cargada
     original_image = Image.open(uploaded_image)

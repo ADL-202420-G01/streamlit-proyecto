@@ -14,16 +14,16 @@ st.set_page_config(
 st.title("Localización de construcciones con imágenes satelitales")
 st.write("Sube una imagen satelital para identificar construcciones")
 
-# Subir la imagen
-uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
-
 MODEL_PATH = "cnn_model.keras"
 model = logic.load_model(MODEL_PATH)
 
 if model is not None:
     st.write("Resumen del modelo:")
     st.text(model.summary())
-    
+
+# Subir la imagen
+uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
+
 if uploaded_image is not None:
     # Mostrar la imagen cargada
     original_image = Image.open(uploaded_image)
@@ -46,6 +46,6 @@ st.write("Procesamiento completo.")
 
 # Mostrar la versión de Python
 st.write(f"Versión de Python: {sys.version}")
-st.write(f"Versión de SKetreamlit: {st.__version__}. Versión de NumPy: {np.__version__}.")
+st.write(f"Versión de Streamlit: {st.__version__}. Versión de NumPy: {np.__version__}.")
 st.write(f"Versión de TensorFlow: {tf.__version__}. Versión de Keras: {tf.keras.__version__}.")
-st.write(f"Autores: Edison Suarez, Nicolas Niño, Diego Noriega, Freddy Freddy Orjuela")
+st.write(f"Autores: Edison Suarez, Nicolas Niño, Diego Noriega, Freddy Orjuela")

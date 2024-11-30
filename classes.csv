@@ -1,0 +1,7 @@
+title,shape,color,geometry_config
+Water,polygon,#50E3C2,{}
+Land (unpaved area),polygon,#F5A623,{}
+Road,polygon,#DE597F,{}
+Building,polygon,#D0021B,{}
+Vegetation,polygon,#417505,{}
+Unlabeled,polygon,#9B9B9B,{}

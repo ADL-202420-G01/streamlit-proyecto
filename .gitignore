@@ -166,4 +166,4 @@ cython_debug/
 
 # archivos modelos de keras
 *.h5
-*.keras
+!cnn_model.keras

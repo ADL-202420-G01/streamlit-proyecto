@@ -164,12 +164,5 @@ cython_debug/
 # mac os
 .DS_Store
 
-# archivos modelos de keras
-*.h5
-*.keras
-!seg_model_weights.best.weights.h5
-!seg_model_weights.h5
-!cnn_model.keras
-
 #contenedores
 .devcontainer/

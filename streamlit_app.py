@@ -7,6 +7,8 @@ from PIL import Image
 #cargar el modelo guardado
 model=tf.keras.models.load_model("Data/cnn_model.keras")
 
+label_map = {0: "Cat", 1: "Dog"}
+
 st.set_page_config(
     layout="centered", page_title="ADL 202420 Grupo 1", page_icon="🛩️"
 )

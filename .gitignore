@@ -166,6 +166,7 @@ cython_debug/
 
 # archivos modelos de keras
 *.h5
+!seg_model_weights.best.weights.h5
 !cnn_model.keras
 
 #contenedores

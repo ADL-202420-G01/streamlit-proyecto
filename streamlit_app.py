@@ -15,13 +15,18 @@ st.title("Localización de construcciones con imágenes satelitales")
 st.write("Modelo que identifica de una imagen satelital construcciones")
 
 MODEL_PATH = "unet_model.keras"
-model = logic.load_model(MODEL_PATH)
+model = logic.get_model()
+# Assuming metrics and loss are defined
+metrics = ['accuracy']  # Replace 'jacard_coef' with the actual implementation if you have it
+total_loss = 'categorical_crossentropy'  # Replace with the actual loss function if different
 
 if model is not None:
-    st.write("Resumen del modelo:")
-    st.write(model.summary())
+    model.compile(optimizer='adam', loss=total_loss, metrics=metrics)
+    model.load_weights(MODEL_PATH)
+    st.success("Modelo cargado exitosamente.")
 
 # Subir la imagen
+st.write("Cargue una imagen para subirlo al modelo")
 uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
 
 if uploaded_image is not None:

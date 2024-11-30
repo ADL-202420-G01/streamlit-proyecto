@@ -4,44 +4,41 @@ import numpy as np
 import sys
 from PIL import Image
 
-#cargar el modelo guardado
-model=tf.keras.models.load_model("Data/cnn_model.keras")
+from app import logic
 
-label_map = {0: "Cat", 1: "Dog"}
+#cargar el modelo guardado
+model=logic.load_model("data/seg_model_weights.best.weights.h5")
 
 st.set_page_config(
     layout="centered", page_title="ADL 202420 Grupo 1", page_icon="🛩️"
 )
 
-#Funcion para preprocesar la imagen
-def preprocess_image(image):
-    image = image.resize((128, 128))
-    image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=0)
-    return image
-
 # Crear la interfaz en Streamlit
 st.title("Clasificación con CNN")
-st.write("Sube una imagen para que el modelo haga una predicción")
+st.write("Sube una imagen satelital para identificar construcciones")
 
 # Subir la imagen
 uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
 
 if uploaded_image is not None:
-    # mostrar la imagen subida
-    imagen = Image.open(uploaded_image)
-    st.image(imagen, caption="Imagen Cargada", use_container_width=True)
+    # Mostrar la imagen cargada
+    original_image = Image.open(uploaded_image)
+    st.image(original_image, caption="Imagen Original", use_column_width=True)
 
-    # preprocesar la imagen
-    image_preprocessed = preprocess_image(imagen)
+    # Preprocesar la imagen
+    input_image = logic.preprocess_image(original_image, target_size=(128, 128))  # Ajusta según el modelo
 
-    # hacer la prediccion
-    prediction = model.predict(image_preprocessed)
-    predicted_class = np.argmax(prediction)
-    predicted_label = label_map[predicted_class]
+    # Pasar la imagen por el modelo
+    prediction = model.predict(input_image)
 
-    #mostrar la prediccion
-    st.write(f"Prediccion: {predicted_label}")
+    # Postprocesar la salida
+    result_image = logic.postprocess_output(prediction)
+
+    # Mostrar la imagen procesada
+    st.image(result_image, caption="Imagen Procesada", use_column_width=True)
+
+# Mostrar información adicional
+st.write("Procesamiento completo.")
 
 # Mostrar la versión de Python
 st.write(f"Versión de Python: {sys.version}")

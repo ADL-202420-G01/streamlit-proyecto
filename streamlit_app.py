@@ -27,7 +27,7 @@ if model is not None:
 
 # Subir la imagen
 st.write("Cargue una imagen para subirlo al modelo")
-uploaded_image = st.file_uploader("Eliga una imagen...", type=["jpg", "png"])
+uploaded_image = st.file_uploader("Eliga una imagen jpg...", type=["jpg"])
 
 if uploaded_image is not None:
     # Mostrar la imagen cargada

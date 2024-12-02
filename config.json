@@ -1,0 +1,10 @@
+{
+    "model": {
+      "n_classes": 6,
+      "img_height": 256,
+      "img_width": 256,
+      "img_channels": 3,
+      "weights_path": "best_model.keras"
+    }
+  }
+  

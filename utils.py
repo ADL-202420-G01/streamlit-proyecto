@@ -57,12 +57,6 @@ colors_info = {
 def legend_colors():
     # Agregar descripciones de color en el sidebar o debajo de las imágenes
     st.sidebar.header("Leyenda de Colores")
-    st.sidebar.text("🟨 Agua (rios, lagos): Amarillo #E2A929")
-    st.sidebar.text("🟪 Suelo (area sin pavimento): Morado #8429F6")
-    st.sidebar.text("🟦 Carretera: Azul claro #6EC1E4")
-    st.sidebar.text("🟣 Construccion: Púrpura #3C1098")
-    st.sidebar.text("🟩 Vegetacion: Verde #FEDD3A")
-    st.sidebar.text("⬜ Unlabeled: Gris #9B9B9B")
     
     for color, description in colors_info.items():
         # HTML para mostrar el color y la descripción

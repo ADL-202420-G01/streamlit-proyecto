@@ -44,6 +44,16 @@ def create_color_legend(colors, labels):
     plt.axis('off')  # Oculta los ejes
     return fig
 
+# Colores y descripciones para la leyenda
+colors_info = {
+    "#3C1098": "Building: Púrpura",
+    "#8429F6": "Land: Morado",
+    "#6EC1E4": "Road: Azul claro",
+    "#E2A929": "Water: Amarillo",
+    "#FEDD3A": "Vegetation: Verde",
+    "#9B9B9B": "Unlabeled: Gris"
+}
+
 def legend_colors():
     # Agregar descripciones de color en el sidebar o debajo de las imágenes
     st.sidebar.header("Leyenda de Colores")
@@ -53,6 +63,11 @@ def legend_colors():
     st.sidebar.text("🟣 Construccion: Púrpura #3C1098")
     st.sidebar.text("🟩 Vegetacion: Verde #FEDD3A")
     st.sidebar.text("⬜ Unlabeled: Gris #9B9B9B")
+    
+    for color, description in colors_info.items():
+        # HTML para mostrar el color y la descripción
+        color_box = f"<span style='display:inline-block; width:12px; height:12px; background-color:{color};'></span>"
+        st.sidebar.markdown(f"{color_box} {description}", unsafe_allow_html=True)
 
 def get_versions():
     """Devuelve una cadena con las versiones de las bibliotecas importantes."""

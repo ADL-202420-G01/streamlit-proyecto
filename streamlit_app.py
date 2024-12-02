@@ -24,7 +24,6 @@ total_loss = 'categorical_crossentropy'  # Replace with the actual loss function
 #    st.success("Modelo cargado exitosamente.")
 
 # Subir la imagen
-st.write("Cargue una imagen para subirlo al modelo")
 uploaded_image = st.file_uploader("Eliga una imagen jpg...", type=["jpg"])
 
 if uploaded_file is not None:

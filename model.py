@@ -1,9 +1,17 @@
+import json
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Dropout, Conv2DTranspose, concatenate
 from tensorflow.keras.models import Model
 
-def multi_unet_model(n_classes=6, IMG_HEIGHT=256, IMG_WIDTH=256, IMG_CHANNELS=3):
-    inputs = Input((IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS))
+# Función para cargar la configuración del archivo JSON
+def load_config(path="config.json"):
+    with open(path, 'r') as file:
+        config = json.load(file)
+    return config
+
+# Definición del modelo utilizando la configuración
+def multi_unet_model(config):
+    inputs = Input((config['img_height'], config['img_width'], config['img_channels']))
 
     # Contracción
     c1 = Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(inputs)
@@ -51,15 +59,17 @@ def multi_unet_model(n_classes=6, IMG_HEIGHT=256, IMG_WIDTH=256, IMG_CHANNELS=3)
     c9 = Dropout(0.2)(c9)
     c9 = Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c9)
 
-    outputs = Conv2D(n_classes, (1, 1), activation='softmax')(c9)
+    outputs = Conv2D(config['n_classes'], (1, 1), activation='softmax')(c9)
 
     model = Model(inputs=[inputs], outputs=[outputs])
     return model
 
-def load_model(weights_path='best_model.keras'):
+def load_model(config_path='config.json'):
     """Reconstruye el modelo y carga los pesos entrenados."""
-    model = multi_unet_model(n_classes=6, IMG_HEIGHT=256, IMG_WIDTH=256, IMG_CHANNELS=3)
-    model.load_weights(weights_path)
+    config = load_config(config_path)
+    model_config = config['model']
+    model = multi_unet_model(model_config)
+    model.load_weights(model_config['weights_path'])
     return model
 
 def predict(model, image):

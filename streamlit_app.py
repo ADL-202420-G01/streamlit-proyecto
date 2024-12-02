@@ -12,8 +12,8 @@ st.title("Segmentacion de imagenes satelitales para catastro")
 st.write("Modelo de apoyo para trabajos de catastro")
 
 MODEL_PATH = "best_model.keras"
-#model = logic.get_model()
-model = tf.keras.models.load_model(MODEL_PATH)
+model = load_model()
+# model = tf.keras.models.load_model(MODEL_PATH)
 # Assuming metrics and loss are defined
 metrics = ['accuracy']  # Replace 'jacard_coef' with the actual implementation if you have it
 total_loss = 'categorical_crossentropy'  # Replace with the actual loss function if different
@@ -27,25 +27,14 @@ total_loss = 'categorical_crossentropy'  # Replace with the actual loss function
 st.write("Cargue una imagen para subirlo al modelo")
 uploaded_image = st.file_uploader("Eliga una imagen jpg...", type=["jpg"])
 
-if uploaded_image is not None:
-    # Mostrar la imagen cargada
-    original_image = Image.open(uploaded_image)
-    st.image(original_image, caption="Imagen Original", use_container_width=True)
-
-    # Cambiar tamaño antes de preprocesar
-    resized_image = original_image.resize((512, 512))
-
-    # Preprocesar la imagen
-    input_image = logic.preprocess_image(resized_image)  # Sin target_size
-
-    # Pasar la imagen por el modelo
-    prediction = model.predict(input_image)
-
-    # Postprocesar la salida
-    result_image = logic.postprocess_output(prediction)
-
-    # Mostrar la imagen procesada
-    st.image(result_image, caption="Imagen Procesada", use_column_width=True)
+if uploaded_file is not None:
+    image = load_image(uploaded_file)
+    image_processed = preprocess_image(image)
+    prediction = predict(model, image_processed)
+    overlay_image = create_mask_overlay(image, prediction)
+    
+    st.image(image, caption='Imagen Original', use_column_width=True)
+    st.image(overlay_image, caption='Predicción de Segmentación', use_column_width=True)
 
 # Mostrar la versión de Python
 st.write(f"Versión de Python: {sys.version}")

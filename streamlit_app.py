@@ -1,29 +1,27 @@
 import streamlit as st
-import tensorflow as tf
-import numpy as np
-import sys
-from PIL import Image
+from model import load_model, predict
+from utils import load_image, preprocess_image, create_mask_overlay
 
-from app import logic
 
 st.set_page_config(
     layout="centered", page_title="ADL 202420 Grupo 1", page_icon="🛩️"
 )
 
 # Crear la interfaz en Streamlit
-st.title("Localización de construcciones con imágenes satelitales")
-st.write("Modelo que identifica de una imagen satelital construcciones")
+st.title("Segmentacion de imagenes satelitales para catastro")
+st.write("Modelo de apoyo para trabajos de catastro")
 
-MODEL_PATH = "unet_model.keras"
-model = logic.get_model()
+MODEL_PATH = "best_model.keras"
+#model = logic.get_model()
+model = tf.keras.models.load_model(MODEL_PATH)
 # Assuming metrics and loss are defined
 metrics = ['accuracy']  # Replace 'jacard_coef' with the actual implementation if you have it
 total_loss = 'categorical_crossentropy'  # Replace with the actual loss function if different
 
-if model is not None:
-    model.compile(optimizer='adam', loss=total_loss, metrics=metrics)
-    model.load_weights(MODEL_PATH)
-    st.success("Modelo cargado exitosamente.")
+#if model is not None:
+#    model.compile(optimizer='adam', loss=total_loss, metrics=metrics)
+#    model.load_weights(MODEL_PATH)
+#    st.success("Modelo cargado exitosamente.")
 
 # Subir la imagen
 st.write("Cargue una imagen para subirlo al modelo")
@@ -35,7 +33,7 @@ if uploaded_image is not None:
     st.image(original_image, caption="Imagen Original", use_container_width=True)
 
     # Cambiar tamaño antes de preprocesar
-    resized_image = original_image.resize((256, 256))
+    resized_image = original_image.resize((512, 512))
 
     # Preprocesar la imagen
     input_image = logic.preprocess_image(resized_image)  # Sin target_size

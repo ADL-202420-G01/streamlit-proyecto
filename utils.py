@@ -46,10 +46,10 @@ def create_color_legend(colors, labels):
 
 # Colores y descripciones para la leyenda
 colors_info = {
-    "#3C1098": "Building: Púrpura",
+    "#E2A929": "Water: Amarillo",
     "#8429F6": "Land: Morado",
     "#6EC1E4": "Road: Azul claro",
-    "#E2A929": "Water: Amarillo",
+    "#3C1098": "Building: Púrpura",
     "#FEDD3A": "Vegetation: Verde",
     "#9B9B9B": "Unlabeled: Gris"
 }

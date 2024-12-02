@@ -69,6 +69,11 @@ def load_model(config_path='config.json'):
     config = load_config(config_path)
     model_config = config['model']
     model = multi_unet_model(model_config)
+    
+    # Assuming metrics and loss are defined
+    metrics = ['accuracy']  # Replace 'jacard_coef' with the actual implementation if you have it
+    total_loss = 'categorical_crossentropy'  # Replace with the actual loss function if different
+    model.compile(optimizer='adam', loss=total_loss, metrics=metrics)
     model.load_weights(model_config['weights_path'])
     return model
 

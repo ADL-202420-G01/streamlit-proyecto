@@ -25,7 +25,6 @@ colors_rgb = [
     (254, 221, 58),  # Vegetation (#FEDD3A)
     (155, 155, 155)  # Unlabeled (#9B9B9B)
 ]
-labels = ["Agua", "Tierra", "Camino", "Edificios", "Vegetacion", "Sin etiqueta"]
 
 def class_to_rgb(mask):
     """Convert class indices to RGB colors using a predefined color map."""
@@ -45,12 +44,7 @@ def create_color_legend(colors, labels):
     plt.axis('off')  # Oculta los ejes
     return fig
 
-def show_color_legend():
-    # Crear la leyenda
-    legend_fig = create_color_legend(colors_rgb, labels)
-
-    # Mostrar la leyenda en Streamlit
-    #st.pyplot(legend_fig)
+def legend_colors():
     # Agregar descripciones de color en el sidebar o debajo de las imágenes
     st.sidebar.header("Leyenda de Colores")
     st.sidebar.text("🟨 Agua (rios, lagos): Amarillo #E2A929")

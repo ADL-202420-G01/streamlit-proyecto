@@ -1,7 +1,7 @@
 import streamlit as st
 from model import load_model, predict
 from utils import load_image, preprocess_image, class_to_rgb
-from utils import show_color_legend, get_versions, get_authors
+from utils import legend_colors, get_versions, get_authors
 
 # Configuración de la página para usar todo el ancho disponible
 st.set_page_config(
@@ -37,8 +37,8 @@ if uploaded_file is not None:
         st.write("Máscara Predicha")
         st.image(mask_rgb, use_container_width=True)  # Mostrar máscara predicha en la segunda columna
 
-    # Crear la leyenda
-    show_color_legend()
+    # mostrar leyenda de colores
+    legend_colors()
 #else:
 #    st.write("Por favor, carga una imagen para analizar.")
 

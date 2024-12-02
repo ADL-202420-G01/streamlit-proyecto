@@ -1,13 +1,14 @@
 # streamlit-proyecto
-Localización de Construcciones con Imágenes Satelitales mediante Deep Learning
+Segmentación de Imágenes satelitales para catastro con técnicas de Deep Learning
 # Contexto y objetivos
 **Problema**
-- En este caso exploraremos el dataset "Cat & Dog". Este dataset cuenta con 25000 imágenes. Las imágenes presentan diversas dimensiones, siendo 100x100 la más común. El objetivo es construir un clasificador a través del algoritmo de CNN que pueda distinguir entre cada uno de estos animales.
+- Actualmente las metodologías para identificar entornos urbanos en imágenes satelitales son limitadas por la capacidad de los algoritmos tradicionales para distinguir entre diferentes tipos de construcciones, vegetación y otros elementos geográficos. 
 
 **Objetivos**
-1. Construir un modelo CNN.
-2. Desplegar el modelo en Streamlit.
+1. Realizar limpieza y preparación de los datos, garantizando la calidad y adecuación de estos para su utilización en modelos de aprendizaje automático. 
+2. Seleccionar las características, mediante técnicas de análisis exploratorio de datos para identificar las variables más relevantes y significativas en la predicción de la autonomía del dron. 
+3. Evaluar el rendimiento del modelo de clasificación mediante las métricas correspondientes, para determinar su eficacia en la predicción en el nivel de consumo de la batería. 
+4. Desplegar los mejores modelos obtenidos en un aplicativo web.
 
-**Datos**
-
-Los datos los puedes consultar [aquí](https://www.kaggle.com/datasets/ashfakyeafi/cat-dog-images-for-classification/data).
+# Autores
+Edison Suarez, Nicolas Niño, Diego Noriega, Freddy Orjuela 

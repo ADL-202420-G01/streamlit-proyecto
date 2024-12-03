@@ -18,12 +18,12 @@ def preprocess_image(image):
 
 # Definición del mapa de colores RGB para cada clase
 colors_rgb = [
-    (226, 169, 41),  # Water (#E2A929)
-    (132, 41, 246),  # Land (unpaved area) (#8429F6)
+    (60, 16, 152),   # Building (#3C1098) Púrpura
+    (132, 41, 246),  # Land (unpaved area) (#8429F6) Morado
     (110, 193, 228), # Road (#6EC1E4)
-    (60, 16, 152),   # Building (#3C1098)
-    (254, 221, 58),  # Vegetation (#FEDD3A)
-    (155, 155, 155)  # Unlabeled (#9B9B9B)
+    (254, 221, 58),  # Vegetation (#FEDD3A) Amarillo
+    (226, 169, 41),  # Water (#E2A929) Naranja
+    (155, 155, 155)  # Unlabeled (#9B9B9B) Gris
 ]
 
 def class_to_rgb(mask):
@@ -46,12 +46,12 @@ def create_color_legend(colors, labels):
 
 # Colores y descripciones para la leyenda
 colors_info = {
-    "#E2A929": "Water: Amarillo",
-    "#8429F6": "Land: Morado",
-    "#6EC1E4": "Road: Azul claro",
-    "#3C1098": "Building: Púrpura",
-    "#FEDD3A": "Vegetation: Verde",
-    "#9B9B9B": "Unlabeled: Gris"
+    "#3C1098": "Púrpura: Construcciones.",
+    "#8429F6": "Morado: Tierra, suelo.",
+    "#6EC1E4": "Azul claro: Carreteras",
+    "#FEDD3A": "Amarillo: Vegetacion, arboles.",
+    "#E2A929": "Naranja: Agua, lagos, rios.",
+    "#9B9B9B": "Gris: Sin etiqueta."
 }
 
 def legend_colors():

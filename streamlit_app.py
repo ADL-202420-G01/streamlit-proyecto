@@ -12,7 +12,7 @@ st.set_page_config(
 
 # Crear la interfaz en Streamlit
 st.title("Segmentacion de imagenes satelitales para catastro")
-st.write("Modelo de apoyo para trabajos de catastro")
+st.write("Modelo de apoyo para trabajos de catastro con tecnicas de Deep Learning")
 
 MODEL_PATH = "best_model.keras"
 model = load_model()

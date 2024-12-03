@@ -28,20 +28,23 @@ colors_rgb = [
 ]
 """
 def class_to_rgb(mask, config):
-    colors_rgb = [(int(color['color'][1:3], 16), int(color['color'][3:5], 16), int(color['color'][5:7], 16)) for color in config['classes']]
+    """Convert class indices to RGB colors using a predefined color map from config."""
+    classes = config.get("classes", [])
+    # Crear un diccionario para mapear los índices de clase a colores RGB
+    class_to_color = {i: (int(cls['color'][1:3], 16), int(cls['color'][3:5], 16), int(cls['color'][5:7], 16)) for i, cls in enumerate(classes)}
     rgb_mask = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
-    for i, color in enumerate(classes):
+    for i, color in class_to_color.items():
         rgb_mask[mask == i] = color
     return rgb_mask
 
 def display_color_legend(config):
     st.sidebar.header("Leyenda de Colores")
-    colors_rgb = config.get("classes", [])
-    if not colors_rgb:
-        st.sidebar.write("No hay información de colores disponible.")
+    classes = config.get("classes", [])
+    if not classes:
+        st.sidebar.write("No hay información de clases disponible.")
         return
 
-    for item in colors_rgb:
+    for item in classes:
         color = item['color']
         description = item['label']
         color_box = f"<span style='display:inline-block; width:12px; height:12px; background-color:{color};'></span>"

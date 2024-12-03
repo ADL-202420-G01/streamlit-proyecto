@@ -1,13 +1,8 @@
 import json
 import tensorflow as tf
+
 from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, Dropout, Conv2DTranspose, concatenate
 from tensorflow.keras.models import Model
-
-# Función para cargar la configuración del archivo JSON
-def load_config(path="config.json"):
-    with open(path, 'r') as file:
-        config = json.load(file)
-    return config
 
 # Definición del modelo utilizando la configuración
 def multi_unet_model(config):
@@ -64,9 +59,8 @@ def multi_unet_model(config):
     model = Model(inputs=[inputs], outputs=[outputs])
     return model
 
-def load_model(config_path='config.json'):
+def load_model(config):
     """Reconstruye el modelo y carga los pesos entrenados."""
-    config = load_config(config_path)
     model_config = config['model']
     model = multi_unet_model(model_config)
     

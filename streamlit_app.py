@@ -1,7 +1,9 @@
 import streamlit as st
+
+from config_loader import load_config
 from model import load_model, predict
 from utils import load_image, preprocess_image, class_to_rgb
-from utils import legend_colors, get_versions, get_authors
+from utils import display_color_legend, get_versions, get_authors
 
 # Configuración de la página para usar todo el ancho disponible
 st.set_page_config(
@@ -14,8 +16,8 @@ st.set_page_config(
 st.title("Segmentacion de imagenes satelitales para catastro")
 st.write("Modelo de apoyo para trabajos de catastro con tecnicas de Deep Learning")
 
-MODEL_PATH = "best_model.keras"
-model = load_model()
+config = load_config("config.json")
+model = load_model(config)
 
 # Subir la imagen
 uploaded_file = st.file_uploader("Eliga una imagen jpg...", type=["jpg", "png"])
@@ -38,7 +40,7 @@ if uploaded_file is not None:
         st.image(mask_rgb, use_container_width=True)  # Mostrar máscara predicha en la segunda columna
 
     # mostrar leyenda de colores
-    legend_colors()
+    display_color_legend(config)
 #else:
 #    st.write("Por favor, carga una imagen para analizar.")
 

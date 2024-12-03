@@ -6,7 +6,7 @@
       "img_channels": 3,
       "weights_path": "best_model.keras"
     },
-    "classes": [
+    "colors_info": [
         {"color": "#3C1098", "label": "Púrpura: Construcciones."},
         {"color": "#8429F6", "label": "Morado: Tierra, suelo."},
         {"color": "#6EC1E4", "label": "Azul claro: Carreteras"},

@@ -16,6 +16,7 @@ def preprocess_image(image):
     """Aplica preprocesamientos necesarios antes de la predicción."""
     return image / 255.0  # Normalización simple
 
+"""
 # Definición del mapa de colores RGB para cada clase
 colors_rgb = [
     (60, 16, 152),   # Building (#3C1098) Púrpura
@@ -25,41 +26,18 @@ colors_rgb = [
     (226, 169, 41),  # Water (#E2A929) Naranja
     (155, 155, 155)  # Unlabeled (#9B9B9B) Gris
 ]
-
+"""
 def class_to_rgb(mask):
-    """Convert class indices to RGB colors using a predefined color map."""
+    colors_rgb = [(int(color['color'][1:3], 16), int(color['color'][3:5], 16), int(color['color'][5:7], 16)) for color in config['colors_info']]
     rgb_mask = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
     for i, color in enumerate(colors_rgb):
         rgb_mask[mask == i] = color
     return rgb_mask
 
-def create_color_legend(colors, labels):
-    """Crea una figura con una leyenda de colores."""
-    fig, ax = plt.subplots(figsize=(2, 2))  # Ajusta el tamaño según necesites
-    for i, (color, label) in enumerate(zip(colors, labels)):
-        ax.barh(i, 1, color=np.array(color)/255.0, label=label)
-    ax.set_xlim(0, 1)
-    ax.legend(ncol=1, bbox_to_anchor=(1, 1), loc='upper left')
-    plt.gca().invert_yaxis()
-    plt.axis('off')  # Oculta los ejes
-    return fig
-
-# Colores y descripciones para la leyenda
-colors_info = {
-    "#3C1098": "Púrpura: Construcciones.",
-    "#8429F6": "Morado: Tierra, suelo.",
-    "#6EC1E4": "Azul claro: Carreteras",
-    "#FEDD3A": "Amarillo: Vegetacion, arboles.",
-    "#E2A929": "Naranja: Agua, lagos, rios.",
-    "#9B9B9B": "Gris: Sin etiqueta."
-}
-
-def legend_colors():
-    # Agregar descripciones de color en el sidebar o debajo de las imágenes
+def display_color_legend(config):
     st.sidebar.header("Leyenda de Colores")
-    
+    colors_info = config.get("colors_info", {})
     for color, description in colors_info.items():
-        # HTML para mostrar el color y la descripción
         color_box = f"<span style='display:inline-block; width:12px; height:12px; background-color:{color};'></span>"
         st.sidebar.markdown(f"{color_box} {description}", unsafe_allow_html=True)
 

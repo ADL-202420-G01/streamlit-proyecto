@@ -28,16 +28,22 @@ colors_rgb = [
 ]
 """
 def class_to_rgb(mask, config):
-    colors_rgb = [(int(color['color'][1:3], 16), int(color['color'][3:5], 16), int(color['color'][5:7], 16)) for color in config['colors_info']]
+    colors_rgb = [(int(color['color'][1:3], 16), int(color['color'][3:5], 16), int(color['color'][5:7], 16)) for color in config['classes']]
     rgb_mask = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
-    for i, color in enumerate(colors_rgb):
+    for i, color in enumerate(classes):
         rgb_mask[mask == i] = color
     return rgb_mask
 
 def display_color_legend(config):
     st.sidebar.header("Leyenda de Colores")
-    colors_info = config.get("colors_info", {})
-    for color, description in colors_info.items():
+    colors_rgb = config.get("classes", [])
+    if not colors_rgb:
+        st.sidebar.write("No hay información de colores disponible.")
+        return
+
+    for item in colors_rgb:
+        color = item['color']
+        description = item['label']
         color_box = f"<span style='display:inline-block; width:12px; height:12px; background-color:{color};'></span>"
         st.sidebar.markdown(f"{color_box} {description}", unsafe_allow_html=True)
 

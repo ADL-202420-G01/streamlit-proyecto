@@ -27,7 +27,7 @@ colors_rgb = [
     (155, 155, 155)  # Unlabeled (#9B9B9B) Gris
 ]
 """
-def class_to_rgb(mask):
+def class_to_rgb(mask, config):
     colors_rgb = [(int(color['color'][1:3], 16), int(color['color'][3:5], 16), int(color['color'][5:7], 16)) for color in config['colors_info']]
     rgb_mask = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
     for i, color in enumerate(colors_rgb):

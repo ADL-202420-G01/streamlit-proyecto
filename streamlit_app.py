@@ -27,7 +27,7 @@ if uploaded_file is not None:
     image = load_image(uploaded_file)
     image_processed = preprocess_image(image)
     prediction = predict(model, image_processed)
-    mask_rgb = class_to_rgb(prediction) 
+    mask_rgb = class_to_rgb(prediction, config) 
 
     col1, col2 = st.columns(2)  # Crear dos columnas
 

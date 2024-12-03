@@ -18,7 +18,7 @@ MODEL_PATH = "best_model.keras"
 model = load_model()
 
 # Subir la imagen
-uploaded_file = st.file_uploader("Eliga una imagen jpg...", type=["jpg"])
+uploaded_file = st.file_uploader("Eliga una imagen jpg...", type=["jpg", "png"])
 
 if uploaded_file is not None:
     

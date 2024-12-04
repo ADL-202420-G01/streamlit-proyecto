@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # Crear la interfaz en Streamlit
-st.title("Segmentacion de imagenes satelitales para catastro")
+st.title("Segmentacion de ortofotos para catastro")
 st.write("Modelo de apoyo para trabajos de catastro con tecnicas de Deep Learning")
 
 config = load_config("config.json")

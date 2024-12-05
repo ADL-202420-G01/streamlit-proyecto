@@ -20,7 +20,7 @@ config = load_config("config.json")
 model = load_model(config)
 
 # Subir la imagen
-uploaded_file = st.file_uploader("Eliga una imagen jpg...", type=["jpg", "png"])
+uploaded_file = st.file_uploader("Eliga una imagen jpg...", type=["jpg"])
 
 if uploaded_file is not None:
     
